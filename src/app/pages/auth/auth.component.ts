@@ -1,17 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
   title = 'test';
 
-  constructor(private authService: AuthService,
-              private router: Router) {
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     /*if(this.authService.verifyLogged()){
@@ -19,25 +18,20 @@ export class AuthComponent implements OnInit {
     }*/
   }
 
-  onLogin() {
-    this.authService.login({
-      email: 'test@test.com',
-      password: '123456',
-      returnSecureToken: true
-    }).subscribe(res => {
-      console.log('RESPONSE: ', res)
-      this.router.navigate(['home'])
-    })
-  }
+  onLogin(form: any) {
+    console.log(form.value);
 
-  onCreate() {
-    this.authService.createUser({
-      email: 'test2@test.com',
-      password: '123456',
-      returnSecureToken: true
-    }).subscribe(res => {
-      console.log('CREATE USER: ', res)
-    })
+    if (form.valid) {
+      this.authService
+        .login({
+          email: form.value.name,
+          password: form.value.pass,
+          returnSecureToken: true,
+        })
+        .subscribe((res) => {
+          console.log('RESPONSE: ', res);
+          this.router.navigate(['home']);
+        });
+    }
   }
-
 }

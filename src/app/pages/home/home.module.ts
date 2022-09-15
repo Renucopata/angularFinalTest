@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import {Route, RouterModule} from "@angular/router";
 import {HomeComponent} from "./home.component";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {DatePipe} from "@angular/common";
 
 const routes: Route[] = [
   {
@@ -16,7 +18,10 @@ const routes: Route[] = [
   ],
   imports: [
     RouterModule.forChild(routes),
-    MatSidenavModule
+    MatSidenavModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DatePipe
   ]
 })
 export class HomeModule { }

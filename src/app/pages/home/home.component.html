@@ -3,34 +3,29 @@
     <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
          xmlns="http://www.w3.org/2000/svg">
       <path
-        d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/>
+        d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
     </svg>
-    <span class="font-semibold text-xl tracking-tight">Tailwind CSS</span>
+    <span class="font-semibold text-xl tracking-tight">LOL UPB</span>
   </div>
   <div class="block lg:hidden">
     <button
       class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title>
-        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <title>Menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
       </svg>
     </button>
   </div>
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-        Docs
+      <a (click)="sidePanel()" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        Abrir Panel
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-        Examples
-      </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-        Blog
-      </a>
+
     </div>
     <div>
-      <button
-        (click)="onLogout()"
-        class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+      <button (click)="onLogout()"
+              class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
         Logout
       </button>
     </div>
@@ -39,13 +34,60 @@
 
 <mat-drawer-container class="example-container" autosize>
 
-  <p>CONTENIDO</p>
-  <button class="btn" (click)="onOpenSidePanel()">open Side Panel</button>
-  <p>---</p>
-  <button class="btn" (click)="onCloseSidePanel()">close Side Panel</button>
-
   <mat-drawer class="example-sidenav" mode="side" [position]="'end'" [opened]="openPanel">
-    <p>FORMULARIO</p>
+    <form [formGroup]="formTorneo" (ngSubmit)="onCreateTorneo()">
+      <div class="formCreateTorneo">
+        <p>Cear nuevo torneo</p>
+
+        <input type="text" name="text" class="input" placeholder="Nombre" formControlName="title">
+        Fecha de Inicio
+        <input type="date" name="startDate" class="input" placeholder="Fecha de Inicio" formControlName="startDate">
+        Fecha de Fin
+
+        <input type="date" name="endDate" class="input" placeholder="Fecha de Fin" formControlName="endDate">
+        <button type="submit">
+          <div class="svg-wrapper-1">
+            <div class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor"
+                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                </path>
+              </svg>
+            </div>
+          </div>
+          <span>Crear</span>
+        </button>
+      </div>
+
+
+    </form>
   </mat-drawer>
+
+
+
+  <div *ngFor="let item of torneos" class="torneos">
+    <div class="card work">
+      <div class="img-section">
+        <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76">
+          <path fill-rule="nonzero" fill="#3F9CBB"
+                d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z">
+          </path>
+        </svg> </div>
+      <div class="card-desc">
+        <div class="card-header">
+          <div class="card-title">{{item.id}}</div>
+          <div class="card-menu">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <div class="card-time">{{item.title}}</div>
+        <p class="recent">{{item.startDate | date:'dd-MM-yyyy'}} al {{item.endDate | date:'dd-MM-yyyy'}}</p>
+      </div>
+    </div>
+  </div>
+
 
 </mat-drawer-container>
